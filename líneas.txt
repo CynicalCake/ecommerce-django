@@ -1,0 +1,3 @@
+cd 'C:\Users\esteb\Desktop\Cosas Python\Fundamentos de Python\Proyectos PyCharm\Django\ecommerce'
+source env/Scripts/activate
+python manage.py runserver
