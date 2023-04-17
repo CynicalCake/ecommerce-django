@@ -74,38 +74,25 @@ def payments(request):
 
 
 def place_order(request, total=0, quantity=0):
-
-    print('place_order first')
-
     current_user = request.user
     cart_items = CartItem.objects.filter(user=current_user)
     cart_count = cart_items.count()
 
-    print('place_order before cart_count')
-
     if cart_count <= 0:
-        print('if cart_count')
         return redirect('store')
 
     grand_total = 0
     tax = 0
 
-    print('place_order before for cart_item')
-
     for cart_item in cart_items:
         total += (cart_item.product.price * cart_item.quantity)
         quantity += cart_item.quantity
-    
-    print('place_order after for cart_item')
 
     tax = (2 * total)/100
     grand_total = total + tax
 
-    print('place_order last before first if')
-
     if request.method == 'POST':
         form = OrderForm(request.POST)
-        print('POST')
 
         if form.is_valid():
             data = Order()
@@ -133,10 +120,19 @@ def place_order(request, total=0, quantity=0):
             # 20280110
             order_number = current_date + str(data.id)
             data.order_number = order_number
-            print(data.order_number)
             data.save()
+
+            order = Order.objects.get(user=current_user, is_ordered=False, order_number=order_number)
+            context = {
+                'order': order,
+                'cart_items': cart_items,
+                'total' : total,
+                'tax': tax,
+                'grand_total': grand_total,
+            }
+
+            return render(request, 'orders/order_complete.html', context)
     else:
-        print(2)
         return redirect('checkout')
 
 
@@ -163,6 +159,6 @@ def order_complete(request):
             'payment': payment,
             'subtotal': subtotal,
         }
-        return render(request, 'store/store.html', context)
+        return render(request, 'orders/order_complete.html', context)
     except(Payment.DoesNotExist, Order.DoesNotExist):
         return redirect('home')

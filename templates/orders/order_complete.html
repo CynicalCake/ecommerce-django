@@ -45,8 +45,8 @@
                             <div class="invoice-details mt25">
                                 <div class="well">
                                     <ul class="list-unstyled mb0">
-                                        <li><strong>Orden</strong> # {{ order_number }}</li>
-                                        <li><strong>Transaccion</strong> {{ transID }}</li>
+                                        <li><strong>Orden</strong> # {{ order.order_number }}</li>
+                                        <li><strong>Transaccion</strong> {{ order.transID }}</li>
                                         <li><strong>Fecha de Orden:</strong> {{ order.created_at }}</li>
                                         <li><strong>Status:</strong> {{ payment.status }}</li>
                                     </ul>
@@ -59,7 +59,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="per70 text-center">Descripcion</th>
-                                                <th class="per5 text-center">Qty</th>
+                                                <th class="per5 text-center">Cantidad</th>
                                                 <th class="per25 text-center">Total</th>
                                             </tr>
                                         </thead>
@@ -86,7 +86,7 @@
                                         <tfoot>
                                             <tr>
                                                 <th colspan="2" class="text-right">Sub Total:</th>
-                                                <th class="text-center">$  {{subtotal}} USD</th>
+                                                <th class="text-center">$  {{order.subtotal}} USD</th>
                                             </tr>
                                             <tr>
                                                 <th colspan="2" class="text-right">Tax:</th>
