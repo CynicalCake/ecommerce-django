@@ -8,11 +8,12 @@
 
     <div class="container">
         <div class="row">
+            {% include 'includes/dashboard_sidebar.html' %}
 
             <main class="col-md-9">
                 <article class="card">
                     <header class="card-header">
-                        <strong class="d-inline-block mr-3"> Sesion iniciada de: </strong>
+                        <strong class="d-inline-block mr-3"> Sesión iniciada de: </strong>
                         <span> {{ user.full_name }} </span>
                     </header>
                     <div class="card-body">
@@ -21,9 +22,9 @@
                             <div class="col-md-6">
                                 <div class="card" style="text-align:center;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Total de Ordenes</h5>
+                                        <h5 class="card-title">Total de órdenes</h5>
                                         <h4>{{ orders_count }}</h4>
-                                        <a href="">Ver Ordenes</a>
+                                        <a href="">Ver órdenes</a>
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +32,7 @@
                             <div class="col-md-6">
                                 <div class="card" style="text-align:center;">
                                     <div class="card-body">
-                                        <img src="{{ userprofile.profile_picture.url }}" alt="Imagen de perfil"
+                                        <img src="https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec" alt="Imagen de perfil"
                                             width="50" height="50" style="border-radius:50%">
                                         <p class="mb-0">{{user.email}}</p>
                                         <p>{{user.phone_number}}</p>
